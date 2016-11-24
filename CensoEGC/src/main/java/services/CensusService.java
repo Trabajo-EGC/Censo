@@ -5,11 +5,14 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
+
 import repositories.CensusRepository;
 import utilities.Gmail;
 import utilities.RESTClient;
@@ -545,5 +548,24 @@ public class CensusService {
 		}
 		return result;
 	}
+	
+	// NUEVA FUNCIONALIDAD 2016/2017
+
+		/**
+		* Método para obtener los censo que han finalizado recientemente.				 * 
+		* @param username
+	    *            = Username del usuario que buscamos
+		*/
+		public Collection<Census> findRecentFinishedCensus(String user){
+			Collection<Census> aux;
+			Collection<Census> finished=new HashSet<Census>();
+			aux=censusRepository.findAllCensusFinishedRecently();
+			for(Census c:aux){
+				if(c.getVotoPorUsuario().containsKey(user)){
+					finished.add(c);
+				}
+			}
+			return finished;
+		}
 
 }

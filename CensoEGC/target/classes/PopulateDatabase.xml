@@ -149,6 +149,62 @@
 		<property name="fechaInicioVotacion" value="10/11/2011 00:00" />
 		<property name="fechaFinVotacion" value="12/03/2012 00:00" />
 	</bean>
+	
+	<bean id="census10" class="domain.Census">
+		<property name="username" value="admin1" />
+		<property name="idVotacion" value="32" />
+		<property name="tituloVotacion" value="Censo cerrado vacio NO activo" />
+		<property name="tipoCenso" value="cerrado" />
+		<property name="votoPorUsuario">
+			<map>
+			</map>
+		</property>
+
+		<property name="fechaInicioVotacion" value="08/11/2016 00:00" />
+		<property name="fechaFinVotacion" value="09/03/2016 00:00" />
+	</bean>
+	
+	<bean id="census11" class="domain.Census">
+		<property name="username" value="admin1" />
+		<property name="idVotacion" value="33" />
+		<property name="tituloVotacion" value="Censo cerrado " />
+		<property name="tipoCenso" value="cerrado" />
+		<property name="votoPorUsuario">
+			<map>
+			</map>
+		</property>
+
+		<property name="fechaInicioVotacion" value="11/20/2016 00:00" />
+		<property name="fechaFinVotacion" value="11/25/2016 00:00" />
+	</bean>
+	
+	<bean id="census12" class="domain.Census">
+		<property name="username" value="admin1" />
+		<property name="idVotacion" value="34" />
+		<property name="tituloVotacion" value="Censo abierto" />
+		<property name="tipoCenso" value="abierto" />
+		<property name="votoPorUsuario">
+			<map>
+			</map>
+		</property>
+
+		<property name="fechaInicioVotacion" value="11/01/2016 00:00" />
+		<property name="fechaFinVotacion" value="11/15/2016 00:00" />
+	</bean>
+	
+	<bean id="census13" class="domain.Census">
+		<property name="username" value="admin1" />
+		<property name="idVotacion" value="35" />
+		<property name="tituloVotacion" value="Censo abierto" />
+		<property name="tipoCenso" value="abierto" />
+		<property name="votoPorUsuario">
+			<map>
+			</map>
+		</property>
+
+		<property name="fechaInicioVotacion" value="10/01/2016 00:00" />
+		<property name="fechaFinVotacion" value="10/28/2016 00:00" />
+	</bean>
 
 
 </beans>

@@ -430,6 +430,16 @@ public class CensusController extends AbstractController {
 
 		return result;
 	}
+	@RequestMapping(value = "/getFinishedCensus", method = RequestMethod.GET)
+	public ModelAndView getFinishedCensus(@CookieValue("user") String user) {
+		ModelAndView result = new ModelAndView("census/finishedCensus");
+		Collection<Census> censuses = new ArrayList<Census>();
+		censuses = censusService.findRecentFinishedCensus(user);
+		result.addObject("censuses", censuses);
+		result.addObject("requestURI", "census/getFinishedCensus.do");
+
+		return result;
+	}
 
 	// Ancillary methods ------------------------------------------------------
 

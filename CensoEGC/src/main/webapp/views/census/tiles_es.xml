@@ -51,5 +51,8 @@
 		<put-attribute name="title" value="Registrarse en un censo" />
 		<put-attribute name="body" value="/views/census/registerList.jsp" />
 	</definition>
-
+	<definition extends="master.page" name="census/finishedCensus">
+		<put-attribute name="title" value="Censos finalizados"/>
+		<put-attribute name="body" value="/views/census/list.jsp"/>
+	</definition>
 </tiles-definitions>
