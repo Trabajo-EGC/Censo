@@ -1,11 +1,18 @@
 package controllers;
 
+import java.util.Collection;
+
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
+
+import domain.Census;
+
+import services.CensusService;
 
 @Controller
 @RequestMapping("/welcome")
@@ -17,6 +24,10 @@ public class WelcomeController extends AbstractController {
 		super();
 	}
 
+	// Constructors -----------------------------------------------------------
+	@Autowired
+	private CensusService censusService;
+	
 	// Index ------------------------------------------------------------------
 
 	@RequestMapping(value = "/index")
@@ -53,9 +64,13 @@ public class WelcomeController extends AbstractController {
 			user.setPath("/");
 			response.addCookie(token_cookie);
 		}
+		
+		Collection<Census> censos = censusService.findAllCensus();
+		
 		result = new ModelAndView("welcome/index");
 		result.addObject("user", username);
 		result.addObject("pass", password);
+		result.addObject("census", censos);
 		result.addObject("prueba", "textoprueba");
 
 		return result;
