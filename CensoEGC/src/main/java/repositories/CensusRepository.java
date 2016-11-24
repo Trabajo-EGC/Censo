@@ -10,6 +10,10 @@ import domain.Census;
 @Repository
 public interface CensusRepository extends JpaRepository<Census, Integer> {
 	
+	//Devuelve los censos por orden descendente de fecha
+	@Query("select c from Census c order by c.fechaFinVotacion desc")
+	Collection<Census> allCensus();
+	
 	// Buscar un censo de una votación
 	
 	@Query("select c from Census c where c.idVotacion = ?1")

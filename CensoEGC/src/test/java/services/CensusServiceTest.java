@@ -9,6 +9,7 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.util.Assert;
 
 import services.CensusService;
 import domain.Census;
@@ -26,6 +27,14 @@ public class CensusServiceTest {
 	private CensusService censusService;
 	
 	// Tests ------------------------------------
+	
+	@Test
+	public void findAllCensus(){
+		Collection<Census> result;
+		result = censusService.findAllCensus();
+		Assert.isTrue(result.size()==9);
+		System.out.println("Los censos almacenados son: " + result);
+	}
 
 	@Test
 	public void createCensus() throws ParseException {

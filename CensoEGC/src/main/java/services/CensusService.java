@@ -34,6 +34,13 @@ public class CensusService {
 	}
 
 	// Methods ----------------------------------------------------------------
+	
+	public Collection<Census> findAllCensus(){
+		Collection<Census> result;
+		result = censusRepository.allCensus();
+		Assert.notNull(result);
+		return result;
+	}
 
 	/**
 	 * Crea un censo a partir de una votación
