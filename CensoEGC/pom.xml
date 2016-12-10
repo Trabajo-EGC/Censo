@@ -119,6 +119,14 @@
 	<!--  Dependencies -->
 
 	<dependencies>
+	
+		<!-- Dependencias 2016-2017 -->
+		<!-- Wiremock -->
+		<dependency>
+    		<groupId>com.github.tomakehurst</groupId>
+    		<artifactId>wiremock</artifactId>
+   			<version>2.4.1</version>
+		</dependency>
 
 		<!-- Spring Framework -->
 
