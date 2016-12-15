@@ -30,6 +30,7 @@
 		<security:intercept-url pattern="/security/loginFailure.do" access="permitAll" /> 
 
 		<security:intercept-url pattern="/welcome/index.do" access="permitAll" /> 
+		<security:intercept-url pattern="/welcome/display.do" access="permitAll" /> 
 
 		<security:intercept-url pattern="/census/**" access="permitAll" />
 		<security:intercept-url pattern="/**" access="hasRole('NONE')" />

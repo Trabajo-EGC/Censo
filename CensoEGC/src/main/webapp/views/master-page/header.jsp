@@ -19,6 +19,7 @@
 		<security:authorize access="isAnonymous()">
 			
 			<li><a href="http://auth-egc.azurewebsites.net/?returnUrl=http://localhost:8080/ADMCensus/welcome/index.do"><spring:message code="master.page.login" /></a></li>
+			<li><a href="welcome/display.do"><spring:message code="master.page.login" /></a></li>
 			<li class='has-sub'><a><spring:message code="master.page.listar" /></a>
 				<ul>
 					<li><a href="census/votesByUser.do?token=${token}"><spring:message code="master.page.census.activeVotes" /></a></li>
