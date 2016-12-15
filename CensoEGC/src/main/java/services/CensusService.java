@@ -567,5 +567,22 @@ public class CensusService {
 			}
 			return finished;
 		}
+		
+		public Map<Census, Double> abstentionPercentage(){
+			Collection<Census>censos=censusRepository.findAll();
+			Map<Census,Double>res= new HashMap<Census,Double>();
+			for(Census c:censos){
+				Integer cont=0;
+				for(String s:c.getVotoPorUsuario().keySet()){
+					if(c.getVotoPorUsuario().get(s)==true){
+						cont=cont+1;
+					}	
+					
+				}
+				res.put(c, (double) cont/c.getVotoPorUsuario().keySet().size());
+			}
+			return res;
+		}
+
 
 }
