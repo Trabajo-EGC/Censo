@@ -529,7 +529,7 @@ tr.tableRowEven,tr.even {
 }
 #cssmenu > ul li a.active,
 #cssmenu > ul li a:hover {
-  background: #5045e8;
+  background: #1F75FE;
   color: #fff;
   text-shadow: 0px 1px 0px #000;
 }

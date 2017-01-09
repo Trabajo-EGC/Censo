@@ -85,29 +85,7 @@
 				</configuration>
 			</plugin>
 			
-			<!-- Plugins 2016-2017 -->
-			<!-- Genera un documento a partir del pom -->
-			<plugin>
-       			 <groupId>org.apache.maven.plugins</groupId>
-      			 <artifactId>maven-doap-plugin</artifactId>
-       			 <version>1.2</version>
-     		</plugin>
-     		
-     		<!-- Te dice como mejorar tu codigo con buenas practicas -->
-     		<plugin>
-			<groupId>org.apache.maven.plugins</groupId>
-       		<artifactId>maven-pmd-plugin</artifactId>
-        	<version>3.7</version>
-			<executions>
-				<execution>
-					<id>Before testing</id>
-					<phase>test</phase>
-					<goals>
-						<goal>pmd</goal>
-					</goals>
-				</execution>
-			</executions>
-		</plugin>
+			
 
 		</plugins>
 	</build>
@@ -146,11 +124,7 @@
 	
 		<!-- Dependencias 2016-2017 -->
 		<!-- Wiremock -->
-		<dependency>
-    		<groupId>com.github.tomakehurst</groupId>
-    		<artifactId>wiremock</artifactId>
-   			<version>2.4.1</version>
-		</dependency>
+		
 
 		<!-- Spring Framework -->
 
