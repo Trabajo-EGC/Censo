@@ -18,9 +18,6 @@
 	<ul>
 		
 		
-			<security:authorize access="isAnonymous()">
-			<li><a href="security/login.do"><spring:message code="master.page.login" /></a></li>
-			</security:authorize>
 			<li class='has-sub'><a><spring:message code="master.page.listar" /></a>
 				<ul>
 					<li><a href="census/listAll.do"><spring:message code="master.page.census.all" /></a></li>
@@ -29,7 +26,7 @@
 						<li><a href="census/getAllCensusByCreador.do?token=${token}"><spring:message code="master.page.census.byCreator" /></a></li> 
 					</security:authorize>
 					<li><a href="census/getCensusesToRegister.do"><spring:message code="master.page.census.listRegister" /></a></li>
-					<li><a href="census/getFinishedCensus.do"><spring:message code="master.page.census.finishedCensus" /></a></li>
+					<li><a href="census/findRecentFinishedCensus.do"><spring:message code="master.page.census.findRecentFinishedCensus" /></a></li>
 				</ul>
 			</li>
 			<li class='has-sub'><a href="http://localhost:8080/CreacionAdminVotaciones"><spring:message code="master.page.votaciones" /></a></li>
@@ -37,6 +34,10 @@
 			<li class='has-sub'><a href="http://localhost:8080/Deliberations"><spring:message code="master.page.deliberaciones" /></a></li>
 			<li><a href="https://recuento.herokuapp.com/"><spring:message code="master.page.recuento" /></a></li>
 			<li><a href="http://storage-egc1516.rhcloud.com/"><spring:message code="master.page.almacenamiento" /></a></li>
+			<security:authorize access="isAnonymous()">
+			<li><a href="security/login.do"><spring:message code="master.page.login" /></a></li>
+			</security:authorize>
+			
 			<security:authorize access="isAuthenticated()">
 			<li><a href="j_spring_security_logout"><spring:message code="master.page.logout" /></a></li>
 			</security:authorize>

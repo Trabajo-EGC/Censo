@@ -209,8 +209,8 @@
 <!-- User accounts -->
 
 	<bean id="userAccount1" class="security.UserAccount">
-		<property name="username" value="administrator" />
-		<property name="password" value="200ceb26807d6bf99fd6f4f0d1ca54d4" />
+		<property name="username" value="admin1" />
+		<property name="password" value="e00cf25ad42683b3df678c61f42c6bda" />
 		<property name="authorities">
 			<list>
 				<bean class="security.Authority">

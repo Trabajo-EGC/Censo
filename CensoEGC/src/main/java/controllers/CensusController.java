@@ -25,6 +25,7 @@ import java.util.Map;
 import javax.swing.JOptionPane;
 import javax.validation.Valid;
 
+import org.eclipse.jetty.security.LoginService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -138,10 +139,10 @@ public class CensusController extends AbstractController {
 	// Metodo para la vista de censos por creador -----------------------------
 
 	@RequestMapping(value = "/getAllCensusByCreador", method = RequestMethod.GET)
-	public ModelAndView getAllCensusByCreador(@CookieValue("user") String username) {
+	public ModelAndView getAllCensusByCreador() {
 		ModelAndView result = new ModelAndView("census/misCensos");
 		Collection<Census> cs;
-		cs = censusService.findCensusByCreator(username);
+		cs = censusService.findCensusByCreator(security.LoginService.getPrincipal().getUsername());
 		result.addObject("censuses", cs);
 		result.addObject("misVotaciones", false);
 		result.addObject("requestURI", "census/getAllCensusByCreador.do");
@@ -420,27 +421,18 @@ public class CensusController extends AbstractController {
 	// Nos devuelve una lista con los censos en los que nos podemos registrar -
 
 	@RequestMapping(value = "/getCensusesToRegister", method = RequestMethod.GET)
-	public ModelAndView getCensusesToRegister(@CookieValue("user") String username) {
+	public ModelAndView getCensusesToRegister() {
 		ModelAndView result = new ModelAndView("census/censosARegistrar");
 		Collection<Census> censuses = new ArrayList<Census>();
-		censuses = censusService.findCensusesToRegisterByUser(username);
+		censuses = censusService.findCensusesToRegisterByUser(security.LoginService.getPrincipal().getUsername());
 		result.addObject("censuses", censuses);
 		result.addObject("misVotaciones", false);
 		result.addObject("requestURI", "census/getCensusesToRegister.do");
 
 		return result;
 	}
-	@RequestMapping(value = "/getFinishedCensus", method = RequestMethod.GET)
-	public ModelAndView getFinishedCensus(@CookieValue("user") String user) {
-		ModelAndView result = new ModelAndView("census/finishedCensus");
-		Collection<Census> censuses = new ArrayList<Census>();
-		censuses = censusService.findRecentFinishedCensus(user);
-		result.addObject("censuses", censuses);
-		result.addObject("requestURI", "census/getFinishedCensus.do");
 
-		return result;
-	}
-
+	// Muestra todos los censos registrados, mostrando su estado y su visibilidad.
 	@RequestMapping(value="listAll", method = RequestMethod.GET)
 	public ModelAndView getListAll(){
 		ModelAndView result = new ModelAndView("census/listAll");
@@ -450,9 +442,20 @@ public class CensusController extends AbstractController {
 		result.addObject("requestURI", "census/listAll.do");
 
 	return result;
-
-		
 	}
+	
+	// Muestra los censos que han finalizado recientemente
+	@RequestMapping(value="findRecentFinishedCensus", method = RequestMethod.GET)
+	public ModelAndView getFindRecentFinishedCensus(){
+		ModelAndView result = new ModelAndView("census/listAll");
+		Collection<Census> cs;
+		cs = censusService.findRecentFinishedCensus(security.LoginService.getPrincipal().getUsername());
+		result.addObject("census", cs);
+		result.addObject("requestURI", "census/listAll.do");
+
+	return result;
+	}
+	
 	// Ancillary methods ------------------------------------------------------
 
 	protected ModelAndView createEditModelAndView(Census census) {

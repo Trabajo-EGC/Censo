@@ -57,7 +57,12 @@
 	</definition>
 	
 	<definition name="census/listAll" extends="master.page">	
-		<put-attribute name="title" value="Listar todos los censos" />
+		<put-attribute name="title" value="List all census" />
+		<put-attribute name="body" value="/views/census/listAll.jsp" />
+	</definition>
+	
+	<definition name="census/findRecentFinishedCensus" extends="master.page">	
+		<put-attribute name="title" value="List last census closed" />
 		<put-attribute name="body" value="/views/census/listAll.jsp" />
 	</definition>
 	
