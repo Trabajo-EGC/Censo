@@ -567,5 +567,18 @@ public class CensusService {
 			}
 			return finished;
 		}
+<<<<<<< HEAD
 
+=======
+		
+		
+		/**
+		* Método para obtener los censos que posean un titulo.				 * 
+		* @param key
+	    *            = Titulo o parte del titulo del censo
+		*/
+		public Collection<Census> findByKey(String key){
+			return censusRepository.findByRecipeKeyWord(key);
+		}
+>>>>>>> buscador
 }
