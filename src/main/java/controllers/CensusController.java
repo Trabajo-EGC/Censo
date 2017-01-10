@@ -441,8 +441,7 @@ public class CensusController extends AbstractController {
 		return result;
 	}
 
-<<<<<<< HEAD
-=======
+
 	// Search ----------------------------------------------------------------
 	@RequestMapping(value = "/searchByTitle", method = RequestMethod.GET)
 	public ModelAndView searchByTitle(@RequestParam String key){
@@ -455,7 +454,7 @@ public class CensusController extends AbstractController {
 		return result;
 	}
 	
->>>>>>> buscador
+
 	// Ancillary methods ------------------------------------------------------
 
 	protected ModelAndView createEditModelAndView(Census census) {

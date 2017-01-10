@@ -567,9 +567,7 @@ public class CensusService {
 			}
 			return finished;
 		}
-<<<<<<< HEAD
 
-=======
 		
 		
 		/**
@@ -580,5 +578,5 @@ public class CensusService {
 		public Collection<Census> findByKey(String key){
 			return censusRepository.findByRecipeKeyWord(key);
 		}
->>>>>>> buscador
+
 }
