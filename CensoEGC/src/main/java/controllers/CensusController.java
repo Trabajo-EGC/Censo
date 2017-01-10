@@ -441,6 +441,18 @@ public class CensusController extends AbstractController {
 		return result;
 	}
 
+	@RequestMapping(value="listAll", method = RequestMethod.GET)
+	public ModelAndView getListAll(){
+		ModelAndView result = new ModelAndView("census/listAll");
+		Collection<Census> cs;
+		cs = censusService.findAll();
+		result.addObject("census", cs);
+		result.addObject("requestURI", "census/listAll.do");
+
+	return result;
+
+		
+	}
 	// Ancillary methods ------------------------------------------------------
 
 	protected ModelAndView createEditModelAndView(Census census) {

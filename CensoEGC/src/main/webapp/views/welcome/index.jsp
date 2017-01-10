@@ -11,27 +11,3 @@
 document.cookie = "user=${user}";
 
 </script>
-
-<!-- En esta tabla mostraremos los últimos censos que se han realizado -->
-
-<display:table pagesize="5" class="census" name="census"
-	requestURI="${requestURI}" id="census">
-	
-	<!-- Atributos de la tabla -->
-	<spring:message code="census.username" var="username" />
-	<display:column property="username" title="${username}" sortable="true" />
-	
-	<spring:message code="census.tituloVotacion" var="tituloVotacion" />
-	<display:column property="tituloVotacion" title="${tituloVotacion}" sortable="true" />
-	
-	<spring:message code="census.tipoCenso" var="tipoCenso" />
-	<display:column property="tipoCenso" title="${tipoCenso}" sortable="true" />
-	
-	<spring:message code="census.fechaInicioVotacion" var="fechaInicioVotacion" />
-	<display:column property="fechaInicioVotacion" title="${fechaInicioVotacion}" sortable="true" />
-	
-	<spring:message code="census.fechaFinVotacion" var="fechaFinVotacion" />
-	<display:column property="fechaFinVotacion" title="${fechaFinVotacion}" sortable="true" />
-	
-	
-</display:table>
