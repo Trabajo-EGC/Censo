@@ -452,12 +452,9 @@ public class CensusController extends AbstractController {
 		cs = censusService.findRecentFinishedCensus(security.LoginService.getPrincipal().getUsername());
 		result.addObject("census", cs);
 		result.addObject("requestURI", "census/listAll.do");
-
-<<<<<<< HEAD:src/main/java/controllers/CensusController.java
 	return result;
 	}
 	
-=======
 
 	// Search ----------------------------------------------------------------
 	@RequestMapping(value = "/searchByTitle", method = RequestMethod.GET)
@@ -470,9 +467,8 @@ public class CensusController extends AbstractController {
 			
 		return result;
 	}
-	
 
->>>>>>> 576c51e2377ca61e8710f9b9588acc6c184ecf17:src/main/java/controllers/CensusController.java
+
 	// Ancillary methods ------------------------------------------------------
 
 	protected ModelAndView createEditModelAndView(Census census) {
