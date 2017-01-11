@@ -453,9 +453,26 @@ public class CensusController extends AbstractController {
 		result.addObject("census", cs);
 		result.addObject("requestURI", "census/listAll.do");
 
+<<<<<<< HEAD:src/main/java/controllers/CensusController.java
 	return result;
 	}
 	
+=======
+
+	// Search ----------------------------------------------------------------
+	@RequestMapping(value = "/searchByTitle", method = RequestMethod.GET)
+	public ModelAndView searchByTitle(@RequestParam String key){
+		ModelAndView result;
+		Collection<Census> census = censusService.findByKey(key);
+			
+		result = new ModelAndView("welcome/index");
+		result.addObject("census", census);
+			
+		return result;
+	}
+	
+
+>>>>>>> 576c51e2377ca61e8710f9b9588acc6c184ecf17:src/main/java/controllers/CensusController.java
 	// Ancillary methods ------------------------------------------------------
 
 	protected ModelAndView createEditModelAndView(Census census) {

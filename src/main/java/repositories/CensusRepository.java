@@ -32,5 +32,11 @@ public interface CensusRepository extends JpaRepository<Census, Integer> {
 	//Devuelve los censos finalizados en los ultimos dos meses
 	@Query("select c from Census c where MONTH(current_date)-MONTH(c.fechaFinVotacion) BETWEEN 0 and 1 and DATE(current_date)>DATE(c.fechaFinVotacion)")
 	public Collection<Census> findAllCensusFinishedRecently();
+
+
+	//Devuelve los censos que contengan un titulo o parte de un titulo dado
+	@Query("select c from Census c where c.tituloVotacion like concat('%', ?1, '%')")
+	Collection<Census> findByRecipeKeyWord(String key);
+
 }
 
