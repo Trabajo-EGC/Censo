@@ -457,13 +457,13 @@ public class CensusController extends AbstractController {
 	
 
 	// Search ----------------------------------------------------------------
-	@RequestMapping(value = "/searchByTitle", method = RequestMethod.GET)
+	@RequestMapping(value = "searchByTitle", method = RequestMethod.GET)
 	public ModelAndView searchByTitle(@RequestParam String key){
 		ModelAndView result;
 		Collection<Census> census = censusService.findByKey(key);
 			
-		result = new ModelAndView("welcome/index");
-		result.addObject("census", census);
+		result = new ModelAndView("census/list");
+		result.addObject("censuses", census);
 			
 		return result;
 	}
@@ -472,7 +472,7 @@ public class CensusController extends AbstractController {
 	// Muestra los 10 censos que tengan mayor participación
 	@RequestMapping(value="mostPopularCensus", method = RequestMethod.GET)
 	public ModelAndView getMostPopularCensus(){
-		ModelAndView result = new ModelAndView("census/listWithNum");
+		ModelAndView result = new ModelAndView("census/mostPopularCensus");
 		Map<Census, Integer> cs = new HashMap<Census, Integer> ();
 		cs = censusService.mostPopularCensus();
 		result.addObject("censuses", cs.keySet());
@@ -485,7 +485,7 @@ public class CensusController extends AbstractController {
 	// Muestra el porcentaje de participación en los censos
 	@RequestMapping(value="abstentionPercentage", method = RequestMethod.GET)
 	public ModelAndView getAbstentionPercentage(){
-		ModelAndView result = new ModelAndView("census/listWithNum");
+		ModelAndView result = new ModelAndView("census/abstentionPercentage");
 		Map<Census, Double> cs = new HashMap<Census, Double> ();
 		cs = censusService.abstentionPercentage();
 		result.addObject("censuses", cs.keySet());

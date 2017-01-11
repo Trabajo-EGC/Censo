@@ -11,3 +11,20 @@
 document.cookie = "user=${user}";
 
 </script>
+
+<spring:message code="census.searchText"/>
+<input type="text" value="" id="textSearch" />
+<input type="button" id="buttonSearch"
+value="<spring:message code="census.searchButton"/>" />
+
+<script type="text/javascript">
+	$(document).ready(function(){
+		$("#buttonSearch").click(function(){
+			window.location.replace('census/searchByTitle.do?key=' + $("#textSearch").val());
+		});
+		$("#buttonSearch").onsubmit(function(){
+			window.location.replace('census/searchByTitle.do?key=' + $("#textSearch").val());
+		});
+	});
+</script>
+

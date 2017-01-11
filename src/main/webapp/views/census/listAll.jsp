@@ -5,6 +5,7 @@
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@taglib prefix="security" uri="http://www.springframework.org/security/tags"%>
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
+<%@taglib prefix="acme" tagdir="/WEB-INF/tags"%>
 
 <script type="text/javascript">
 
@@ -35,3 +36,5 @@ document.cookie = "user=${user}";
 	
 	
 </display:table>
+<br />
+<acme:cancel url="welcome/index.do" code="census.back" />

@@ -68,8 +68,13 @@
 	</definition>
 	
 		
-	<definition name="census/listWithNum" extends="master.page">	
-		<put-attribute name="title" value="List most popular census" />
+	<definition name="census/mostPopularCensus" extends="master.page">	
+		<put-attribute name="title" value="Listar censos con más participación" />
+		<put-attribute name="body" value="/views/census/listWithNum.jsp" />
+	</definition>
+	
+		<definition name="census/abstentionPercentage" extends="master.page">	
+		<put-attribute name="title" value="Listar censos con abstención" />
 		<put-attribute name="body" value="/views/census/listWithNum.jsp" />
 	</definition>
 	
