@@ -574,9 +574,6 @@ public class CensusService {
 			return finished;
 		}
 
-		
-<<<<<<< HEAD:src/main/java/services/CensusService.java
-		
 		/**
 		* Método para obtener los censos que posean un titulo.				 * 
 		* @param key
@@ -584,7 +581,7 @@ public class CensusService {
 		*/
 		public Collection<Census> findByKey(String key){
 			return censusRepository.findByRecipeKeyWord(key);
-=======
+		}
 		/**
 		 * Método para obtener los 10 censos con mayor participación
 		 * 
@@ -603,12 +600,16 @@ public class CensusService {
 				 res.put(c, cont);
 			 }
 			 res = sortByValue(res);
-			 Iterator<Census> c = res.keySet().iterator();
-			 for(int i=0;i<10;i++){
-				 if(c.hasNext()){
+			 int cont = 0;
+			 for(Census c : res.keySet()){
+				 if(cont<10){
 					 result.put((Census)c, res.get(c));
+				 }else{
+					 break;
 				 }
+				 cont++;
 			 }
+
 			 return result;
 		 }
 		 
@@ -638,7 +639,26 @@ public class CensusService {
 		        result.put( entry.getKey(), entry.getValue() );
 		    }
 		    return result;
->>>>>>> bb7b168a80d86421b103b30ff3ebc78e75d1de62:CensoEGC/src/main/java/services/CensusService.java
 		}
+		 
+		 /**
+		  * Muestra el porcentaje de abstenciones para los censos
+		  * @return Map<Census, Double>
+		  */
+		 public Map<Census, Double> abstentionPercentage(){
+			 Collection<Census>censos=censusRepository.findAll();
+			 Map<Census,Double>res= new HashMap<Census,Double>();
+			 for(Census c:censos){
+			 Integer cont=0;
+				 for(String s:c.getVotoPorUsuario().keySet()){
+					 if(c.getVotoPorUsuario().get(s)==false){
+						 cont=cont+1;
+					 }
+				 }
+				 res.put(c, (double) cont/c.getVotoPorUsuario().keySet().size()*100);
+			 }
+			 return res;
+		 }
+
 
 }

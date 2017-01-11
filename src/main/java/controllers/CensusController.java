@@ -468,6 +468,31 @@ public class CensusController extends AbstractController {
 		return result;
 	}
 
+	
+	// Muestra los 10 censos que tengan mayor participación
+	@RequestMapping(value="mostPopularCensus", method = RequestMethod.GET)
+	public ModelAndView getMostPopularCensus(){
+		ModelAndView result = new ModelAndView("census/listWithNum");
+		Map<Census, Integer> cs = new HashMap<Census, Integer> ();
+		cs = censusService.mostPopularCensus();
+		result.addObject("censuses", cs.keySet());
+		result.addObject("cs", cs);
+		result.addObject("requestURI", "census/mostPopularCensus.do");
+	return result;
+	}
+	
+	
+	// Muestra el porcentaje de participación en los censos
+	@RequestMapping(value="abstentionPercentage", method = RequestMethod.GET)
+	public ModelAndView getAbstentionPercentage(){
+		ModelAndView result = new ModelAndView("census/listWithNum");
+		Map<Census, Double> cs = new HashMap<Census, Double> ();
+		cs = censusService.abstentionPercentage();
+		result.addObject("censuses", cs.keySet());
+		result.addObject("cs", cs);
+		result.addObject("requestURI", "census/abstentionPercentage.do");
+	return result;
+	}
 
 	// Ancillary methods ------------------------------------------------------
 

@@ -24,9 +24,11 @@
 					<security:authorize access="isAuthenticated()">
 						<li><a href="census/votesByUser.do?token=${token}"><spring:message code="master.page.census.activeVotes" /></a></li>
 						<li><a href="census/getAllCensusByCreador.do?token=${token}"><spring:message code="master.page.census.byCreator" /></a></li> 
+						<li><a href="census/getCensusesToRegister.do"><spring:message code="master.page.census.listRegister" /></a></li>
+						<li><a href="census/findRecentFinishedCensus.do"><spring:message code="master.page.census.findRecentFinishedCensus" /></a></li>
 					</security:authorize>
-					<li><a href="census/getCensusesToRegister.do"><spring:message code="master.page.census.listRegister" /></a></li>
-					<li><a href="census/findRecentFinishedCensus.do"><spring:message code="master.page.census.findRecentFinishedCensus" /></a></li>
+					<li><a href="census/mostPopularCensus.do"><spring:message code="master.page.census.mostPopular" /></a></li>	
+					<li><a href="census/abstentionPercentage.do"><spring:message code="master.page.census.abstention" /></a></li>			
 				</ul>
 			</li>
 			<li class='has-sub'><a href="http://localhost:8080/CreacionAdminVotaciones"><spring:message code="master.page.votaciones" /></a></li>
