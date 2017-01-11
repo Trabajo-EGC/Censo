@@ -21,4 +21,8 @@
 		<put-attribute name="body" value="/views/welcome/index.jsp" />
 	</definition>
 	
+	<definition name="welcome/display" extends="master.page">	
+		<put-attribute name="title" value="Abstention percentage" />
+		<put-attribute name="body" value="/views/welcome/display.jsp" />
+	</definition>
 </tiles-definitions>
