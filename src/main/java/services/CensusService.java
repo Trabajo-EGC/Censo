@@ -597,7 +597,9 @@ public class CensusService {
 						cont=cont+1;
 					 }
 				 }
-				 res.put(c, cont);
+				 if(cont>=2){
+					 res.put(c, cont);
+				 }
 			 }
 			 res = sortByValue(res);
 			 int cont = 0;
