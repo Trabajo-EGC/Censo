@@ -9,6 +9,7 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.util.Assert;
 
 
 
@@ -88,6 +89,15 @@ public class CensusServiceTest {
 		
 			System.out.println(census);
 		}
+	}
+	
+	@Test
+	public void findByKey(){
+		Collection<Census> result;
+		
+		result = censusService.findByKey("Elecciones");
+		
+		Assert.isTrue(result.size()==1);
 	}
 	
 }
