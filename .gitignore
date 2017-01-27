@@ -1,0 +1,15 @@
+# Object file
+*.o
+
+# Java
+*.class
+*.classpath
+
+
+#Project
+*.project
+
+#Eclipse
+
+/.settings/
+/target/
