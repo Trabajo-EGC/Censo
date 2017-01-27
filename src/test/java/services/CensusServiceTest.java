@@ -3,6 +3,7 @@ package services;
 import java.text.ParseException;
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.Map;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -77,9 +78,9 @@ public class CensusServiceTest {
 	@Test
 	public void findAllCensuses() throws ParseException{
 		
-		// Inicializamos una variable como colección de Censuses agrupando por los censos
-		// creados por un usuario en concretro y buscamos que nos devuelva una colección de 
-		// Censuses -----------------------------------------------------------
+		/* Inicializamos una variable como colección de Census agrupando por los censos
+			creados por un usuario en concretro y buscamos que nos devuelva una colección de 
+		 	Census. */
 		
 		Collection<Census> result;
 		
@@ -93,11 +94,29 @@ public class CensusServiceTest {
 	
 	@Test
 	public void findByKey(){
+		
+		/* Inicializamos una variable como colección de Census y  almacenamos en ella
+			el resultado ( o los resultados en caso de existir más de un censo) del método
+			findByKey(). En este caso, debe dar 1. */
+		
+				
 		Collection<Census> result;
 		
 		result = censusService.findByKey("Elecciones");
 		
 		Assert.isTrue(result.size()==1);
+	}
+	
+	@Test
+	public void mostPopularCensus(){
+		
+		/* Inicializamos una variable como tipo Map<Census,Integer> y  almacenamos en ella
+		el resultado del método mostPopularCensus(), que debe dar 10. */
+		
+		Map<Census,Integer> result;
+		
+		result = censusService.mostPopularCensus();
+		Assert.isTrue(result.size()==10);
 	}
 	
 }
