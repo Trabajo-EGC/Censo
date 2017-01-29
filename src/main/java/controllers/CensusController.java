@@ -243,14 +243,13 @@ public class CensusController extends AbstractController {
 	// Detalles del censo -----------------------------------------------------
 
 	@RequestMapping(value = "/details", method = RequestMethod.GET)
-	public ModelAndView details(@RequestParam int censusId, @CookieValue("user") String username) {
+	public ModelAndView details(@RequestParam int censusId) {
 		ModelAndView result;
 		Date now = new Date();
 		Census census = censusService.findOne(censusId);
 		result = createEditModelAndView(census);
 		Boolean editable;
-		editable = census.getTipoCenso().equals("cerrado") && census.getUsername().equals(username)
-				&& census.getFechaFinVotacion().after(now);
+		editable = census.getTipoCenso().equals("cerrado") && census.getFechaFinVotacion().after(now);
 
 		result.addObject("editable", editable);
 		return result;
