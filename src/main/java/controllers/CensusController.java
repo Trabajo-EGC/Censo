@@ -66,13 +66,13 @@ public class CensusController extends AbstractController {
 	@RequestMapping(value = "/create", method = RequestMethod.GET, produces = "application/json")
 	public @ResponseBody ModelAndView create() throws ParseException, FileNotFoundException, IOException {
 		ModelAndView result = null;
-		String fichero = "Z:\\EGC Workspace\\Censo\\votacion.txt";
+		String fichero = "C:\\Censo\\votacion.txt";
 		Census c = censusService.create(fichero);
 		try {
 			censusService.save(c);
 			result = new ModelAndView("welcome/index");
 		} catch (Exception oops) {
-			oops.getCause();
+			result = getListAll();
 		}
 		return result;
 	}
