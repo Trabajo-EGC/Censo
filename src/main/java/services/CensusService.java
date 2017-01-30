@@ -1,5 +1,9 @@
 package services;
 
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -68,15 +72,35 @@ public class CensusService {
 	 * @return census
 	 * @throws ParseException
 	 */
-
-	public Census create(int idVotacion, String username, String fechaInicio, String fechaFin, String tituloVotacion,
-			String tipoVotacion) throws ParseException {
+	
+	public Census create(String archivo) throws FileNotFoundException, IOException, ParseException {
+		
+		FileReader f = new FileReader(archivo);
+	    BufferedReader b = new BufferedReader(f);
+	    
+	    String votacion;
+		String username;
+		String fechaInicio;
+		String fechaFin;
+		String tituloVotacion;
+		String tipoVotacion;
+		
+		votacion = b.readLine();
+		username = b.readLine();
+		fechaInicio = b.readLine();
+		fechaFin = b.readLine();
+		tituloVotacion = b.readLine();
+		tipoVotacion = b.readLine();
+		
+		b.close();
+		
+		int idVotacion = Integer.parseInt(votacion);
+		
 		Assert.isTrue(!username.equals(""));
 		Assert.isTrue(tipoVotacion.equals("abierta") || tipoVotacion.equals("cerrada"));
 		Census result = new Census();
 		long startDate = Long.parseLong(fechaInicio);
 		long finishDate = Long.parseLong(fechaFin);
-
 		Date fechaComienzo = new Date(startDate);
 		Date fechaFinal = new Date(finishDate);
 		Assert.isTrue(fechaComienzo.before(fechaFinal));
@@ -94,8 +118,11 @@ public class CensusService {
 		result.setUsername(username);
 		HashMap<String, Boolean> vpo = new HashMap<String, Boolean>();
 		result.setVotoPorUsuario(vpo);
+		
 		return result;
 	}
+	
+	
 
 	/**
 	 * Metodo que devuelve los censos en los que se puede registrar un usuario.
@@ -135,14 +162,33 @@ public class CensusService {
 	 * @param username
 	 *            = Nombre de usuario
 	 * @return boolean
+	 * @throws IOException 
 	 */
 
-	public boolean updateUser(int idVotacion, String tipoVotacion, String username) {
+	public boolean updateUser(String archivo) throws IOException , FileNotFoundException{
+		
+		FileReader f = new FileReader(archivo);
+	    BufferedReader b = new BufferedReader(f);
+		
+		String votacion;
+		String tipoVotacion;
+		String username;
+		
+		votacion = b.readLine();
+		tipoVotacion = b.readLine();
+		username = b.readLine();
+		
+		b.close();
+		
+		int idVotacion = Integer.parseInt(votacion);
+		System.out.println(username);
+		System.out.println(tipoVotacion);
 		boolean result = false;
 		Assert.isTrue(!username.equals(""));
 		Census c = findCensusByVote(idVotacion);
+		System.out.println(c);
 		HashMap<String, Boolean> vpo = c.getVotoPorUsuario();
-
+		System.out.println(vpo);
 		if (vpo.containsKey(username) && !vpo.get(username)) {
 			vpo.remove(username);
 			vpo.put(username, true);

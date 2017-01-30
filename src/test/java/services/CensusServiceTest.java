@@ -1,5 +1,7 @@
 package services;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.text.ParseException;
 import java.util.Collection;
 import java.util.HashMap;
@@ -38,13 +40,22 @@ public class CensusServiceTest {
 	
 		System.out.println("Los censos almacenados son: " + result);
 	}
+	
+	@Test
+	public void updateUser() throws ParseException, FileNotFoundException, IOException {
+		
+		Boolean b = censusService.updateUser("Z:\\EGC Workspace\\Censo\\votacion.txt");
+		
+		System.out.println(b);
+
+	}
 
 	@Test
-	public void createCensus() throws ParseException {
+	public void createCensus() throws ParseException, FileNotFoundException, IOException {
 		
 		// Inicializamos un censo, inicializando los valores de los atributos -
 		
-		Census c_1 = censusService.create(1,"DavidElecciones75", "201220150800", "201220152000", "Votación de prueba", "cerrada");
+		Census c_1 = censusService.create("Z:\\EGC Workspace\\Censo\\votacion.txt");
 		
 		// Inicializamos HashMap donde especificaremos quién ha votado y quién no, introducimos usuarios 
 		// y estos los introducimos en el censo creado ------------------------

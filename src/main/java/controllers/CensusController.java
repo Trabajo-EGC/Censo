@@ -13,6 +13,7 @@ package controllers;
 
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.text.ParseException;
@@ -55,20 +56,21 @@ public class CensusController extends AbstractController {
 
 	/****
 	 * Metodos externos
+	 * @throws IOException 
+	 * @throws FileNotFoundException 
 	 ******/
 
 	// Create census ----------------------------------------------------------
 	// Recibe parametros de votacion y crea un censo por votación
 
 	@RequestMapping(value = "/create", method = RequestMethod.GET, produces = "application/json")
-	public @ResponseBody Census create(@RequestParam int idVotacion, @RequestParam String fechaInicio,
-			@RequestParam String fechaFin, @RequestParam String tituloVotacion, String tipoVotacion,
-			@CookieValue("user") String username) throws ParseException {
-		Census result = null;
-
-		Census c = censusService.create(idVotacion, username, fechaInicio, fechaFin, tituloVotacion, tipoVotacion);
+	public @ResponseBody ModelAndView create() throws ParseException, FileNotFoundException, IOException {
+		ModelAndView result = null;
+		String fichero = "Z:\\EGC Workspace\\Censo\\votacion.txt";
+		Census c = censusService.create(fichero);
 		try {
-			result = censusService.save(c);
+			censusService.save(c);
+			result = new ModelAndView("welcome/index");
 		} catch (Exception oops) {
 			oops.getCause();
 		}
@@ -94,10 +96,10 @@ public class CensusController extends AbstractController {
 	// Actualiza el estado de un usuario en una votación por cabina -----------
 
 	@RequestMapping(value = "/updateUser", method = RequestMethod.GET)
-	public @ResponseBody String updateUser(@RequestParam int idVotacion, @RequestParam String tipoVotacion,
-			@CookieValue("user") String username) {
+	public @ResponseBody String updateUser() {
+		String fichero = "Z:\\EGC Workspace\\Censo\\votacioncabina.txt";
 		try {
-			if (censusService.updateUser(idVotacion, tipoVotacion, username)) {
+			if (censusService.updateUser(fichero)) {
 				return new String("{\"result\":\"yes\"}");
 			} else {
 				return new String("{\"result\":\"no\"}");
@@ -496,7 +498,7 @@ public class CensusController extends AbstractController {
 
 	protected ModelAndView createEditModelAndView(Census census) {
 		ModelAndView result;
-
+		
 		result = createEditModelAndView(census, null);
 
 		return result;
@@ -505,10 +507,13 @@ public class CensusController extends AbstractController {
 	protected ModelAndView createEditModelAndView(Census census, String message) {
 		ModelAndView result = new ModelAndView("census/create");
 
+		
+		
 		if (census.getId() != 0) {
 			result = new ModelAndView("census/details");
 		}
 		HashMap<String, Boolean> mapa = census.getVotoPorUsuario();
+		
 		result.addObject("census", census);
 		result.addObject("mapa", mapa);
 		result.addObject("message", message);

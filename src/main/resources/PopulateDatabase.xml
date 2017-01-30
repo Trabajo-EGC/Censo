@@ -72,6 +72,7 @@
 			<map>
 				<entry key="test2" value="false" />
 				<entry key="test3" value="true" />
+				<entry key="admin1" value="true" />
 			</map>
 		</property>
 
