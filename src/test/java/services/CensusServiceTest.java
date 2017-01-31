@@ -44,7 +44,7 @@ public class CensusServiceTest {
 	@Test
 	public void updateUser() throws ParseException, FileNotFoundException, IOException {
 		
-		Boolean b = censusService.updateUser("Z:\\EGC Workspace\\Censo\\votacion.txt");
+		Boolean b = censusService.updateUser("C:\\Censo\\votacion.txt");
 		
 		System.out.println(b);
 
@@ -55,7 +55,7 @@ public class CensusServiceTest {
 		
 		// Inicializamos un censo, inicializando los valores de los atributos -
 		
-		Census c_1 = censusService.create("Z:\\EGC Workspace\\Censo\\votacion.txt");
+		Census c_1 = censusService.create("C:\\Censo\\votacion.txt");
 		
 		// Inicializamos HashMap donde especificaremos quién ha votado y quién no, introducimos usuarios 
 		// y estos los introducimos en el censo creado ------------------------
