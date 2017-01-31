@@ -40,15 +40,6 @@ public class CensusServiceTest {
 	
 		System.out.println("Los censos almacenados son: " + result);
 	}
-	
-	@Test
-	public void updateUser() throws ParseException, FileNotFoundException, IOException {
-		
-		Boolean b = censusService.updateUser("C:\\Censo\\votacion.txt");
-		
-		System.out.println(b);
-
-	}
 
 	@Test
 	public void createCensus() throws ParseException, FileNotFoundException, IOException {
