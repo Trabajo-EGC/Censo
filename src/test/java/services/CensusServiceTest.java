@@ -121,4 +121,12 @@ public class CensusServiceTest {
 		Assert.isTrue(result.size()==10);
 	}
 	
+	@Test
+	public void abstentionCensus(){
+		Map<Census,Double> result;
+		result = censusService.abstentionPercentage();
+		
+		Assert.isTrue(result.size()==2);
+	}
+	
 }

@@ -700,7 +700,9 @@ public class CensusService {
 						 cont=cont+1;
 					 }
 				 }
-				 res.put(c, (double) cont/c.getVotoPorUsuario().keySet().size()*100);
+				if((double) cont/c.getVotoPorUsuario().keySet().size()*100>0){
+					res.put(c, (double) cont/c.getVotoPorUsuario().keySet().size()*100);
+				}
 			 }
 			 return res;
 		 }
