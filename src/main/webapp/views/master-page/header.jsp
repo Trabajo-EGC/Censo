@@ -32,9 +32,13 @@
 					<li><a href="census/abstentionPercentage.do"><spring:message code="master.page.census.abstention" /></a></li>			
 				</ul>
 			</li>
-			<li class='has-sub'><a href="http://localhost:8080/CreacionAdminVotaciones"><spring:message code="master.page.votaciones" /></a></li>
-			<li class='has-sub'><a href="http://localhost:8080/results_view"><spring:message code="master.page.resultados" /></a></li>
-			<li class='has-sub'><a href="http://localhost:8080/Deliberations"><spring:message code="master.page.deliberaciones" /></a></li>
+			<!-- Mientras no haya integración se evitará que salgan errores 404 -->
+			<li class='has-sub'><a href="misc/mant.do"><spring:message code="master.page.votaciones" /></a></li>
+			<li class='has-sub'><a href="misc/mant.do"><spring:message code="master.page.resultados" /></a></li>
+			<li class='has-sub'><a href="misc/mant.do"><spring:message code="master.page.deliberaciones" /></a></li>
+			<!--<li class='has-sub'><a href="http://localhost:8080/CreacionAdminVotaciones"><spring:message code="master.page.votaciones" /></a></li>-->
+			<!--<li class='has-sub'><a href="http://localhost:8080/results_view"><spring:message code="master.page.resultados" /></a></li>-->
+			<!--<li class='has-sub'><a href="http://localhost:8080/Deliberations"><spring:message code="master.page.deliberaciones" /></a></li>-->
 			<li><a href="https://recuento.herokuapp.com/"><spring:message code="master.page.recuento" /></a></li>
 			<li><a href="http://storage-egc1516.rhcloud.com/"><spring:message code="master.page.almacenamiento" /></a></li>
 			<security:authorize access="isAnonymous()">
