@@ -61,8 +61,8 @@
 		<br />
 	</display:column>
 
-	<spring:message code="census.abstention" var="abstention" />
-	<display:column title="${abstention}">
+	<spring:message code="census.participacion" var="participacion" />
+	<display:column title="${participacion}">
 		<jstl:out value="${cs[row] }"></jstl:out>
 	</display:column>
 

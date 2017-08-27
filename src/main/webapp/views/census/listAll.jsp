@@ -1,5 +1,5 @@
 <%@page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
-
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@taglib prefix="jstl"	uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
@@ -36,12 +36,12 @@ document.cookie = "user=${user}";
 	
 	<div class="col-md-3">
 	<spring:message code="census.fechaInicioVotacion" var="fechaInicioVotacion" />
-	<display:column property="fechaInicioVotacion" title="${fechaInicioVotacion}" sortable="true" />
+	<display:column title="${fechaInicioVotacion}" sortable="true"><fmt:formatDate value="${census.fechaInicioVotacion }" pattern="dd/MM/yyyy" /></display:column>
 	</div>
 	
 	<div class="col-md-3">
 	<spring:message code="census.fechaFinVotacion" var="fechaFinVotacion" />
-	<display:column property="fechaFinVotacion" title="${fechaFinVotacion}" sortable="true" />
+	<display:column title="${fechaFinVotacion}" sortable="true"><fmt:formatDate value="${census.fechaFinVotacion }" pattern="dd/MM/yyyy" /></display:column>
 	</div>
 	
 	
