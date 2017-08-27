@@ -18,11 +18,21 @@
 	uri="http://www.springframework.org/security/tags"%>
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 <%@taglib prefix="acme" tagdir="/WEB-INF/tags"%>
+<div class="container">
+<div class="table-responsive">
+
+
 
 <spring:message code="census.token_propietario" />
+
+
 :
+
+
 <jstl:out value="${census.username}" />
 <br />
+
+
 
 <spring:message code="census.tipo" />
 :
@@ -51,6 +61,9 @@
 :
 <fmt:formatDate value="${census.fechaFinVotacion}" pattern="dd/MM/yyyy" />
 <br />
+</div>
+</div>
+
 
 <jstl:if test="${editable}">
 	<acme:cancel url="census/edit.do?censusId=${census.id }"
@@ -61,5 +74,5 @@
 	code="census.export" />
 
 
-<acme:cancel url="census/getAllCensusByCreador.do" code="census.back" />
+<acme:cancel url="welcome/index.do" code="census.back" />
 

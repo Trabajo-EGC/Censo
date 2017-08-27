@@ -14,27 +14,38 @@ document.cookie = "user=${user}";
 </script>
 
 <!-- En esta tabla mostraremos los últimos censos que se han realizado -->
-
+<div class="container">
 <display:table pagesize="5" class="census" name="census"
 	requestURI="${requestURI}" id="census">
 	
 	<!-- Atributos de la tabla -->
+	<div class="col-md-3">
 	<spring:message code="census.username" var="username" />
 	<display:column property="username" title="${username}" sortable="true" />
+	</div>
 	
+	<div class="col-md-3">
 	<spring:message code="census.tituloVotacion" var="tituloVotacion" />
 	<display:column property="tituloVotacion" title="${tituloVotacion}" sortable="true" />
+	</div>
 	
+	<div class="col-md-3">
 	<spring:message code="census.tipoCenso" var="tipoCenso" />
 	<display:column property="tipoCenso" title="${tipoCenso}" sortable="true" />
+	</div>
 	
+	<div class="col-md-3">
 	<spring:message code="census.fechaInicioVotacion" var="fechaInicioVotacion" />
 	<display:column property="fechaInicioVotacion" title="${fechaInicioVotacion}" sortable="true" />
+	</div>
 	
+	<div class="col-md-3">
 	<spring:message code="census.fechaFinVotacion" var="fechaFinVotacion" />
 	<display:column property="fechaFinVotacion" title="${fechaFinVotacion}" sortable="true" />
+	</div>
 	
 	
 </display:table>
+</div>
 <br />
 <acme:cancel url="welcome/index.do" code="census.back" />

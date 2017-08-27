@@ -13,8 +13,14 @@
 <%@taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@taglib prefix="security" uri="http://www.springframework.org/security/tags"%>
 
-<div id="cssmenu">
-	<ul>
+<div class="col-xs-12">
+<div class="row">
+	<div class="container-fluid">
+        <div class="navbar-header">
+        
+			<div id="cssmenu">
+			
+			<ul>
 		
 		
 			<li class='has-sub'><a><spring:message code="master.page.listar" /></a>
@@ -50,6 +56,10 @@
 			</security:authorize>
 		
 	</ul>
+</div>
+</div>
+</div>
+</div>
 </div>
 
 

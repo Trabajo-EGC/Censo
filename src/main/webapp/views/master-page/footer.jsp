@@ -19,7 +19,7 @@
 <jsp:useBean id="date" class="java.util.Date" />
 
 
-<div id="copyright" class="container">
+<div id="copyright">
 	<p>
 		Copyright &copy; <fmt:formatDate value="${date}" pattern="yyyy" /> | Agora@US Co., Inc. 
 		
