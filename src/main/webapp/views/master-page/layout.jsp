@@ -61,12 +61,15 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
 
-<div id="contenedor">
 
 <div id="logo">
+<div class="row text-center visible-lg">
+<div class="col-md-12 ">
 	<a href="welcome/index.do"><img src="images/logo.jpg" alt="Acme-Adventure Co., Inc." style="width: 300px; height: 200px;" /></a>
 	<br /><br />
 	<a href="?language=en" title="English"><strong>English</strong></a>&nbsp;|&nbsp;<a href="?language=es"><strong>Español</strong></a>
+</div>
+</div>
 </div>
 
 <div id="header">
@@ -97,9 +100,12 @@
 		</div>
 	</div>
 </div>
+
+
+
+
 <tiles:insertAttribute name="footer" />
 
-</div>
 
 </body>
 </html>

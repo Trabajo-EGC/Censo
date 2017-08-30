@@ -13,18 +13,14 @@
 <%@taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@taglib prefix="security" uri="http://www.springframework.org/security/tags"%>
 
-<div class="col-xs-12">
+<div class="col-md-12 col-xs-12">
 <div class="row">
 	<div class="container-fluid">
         <div class="navbar-header">
-        
 			<div id="cssmenu">
-			
 			<ul>
-		
-		
-			<li class='has-sub'><a><spring:message code="master.page.listar" /></a>
-				<ul>
+			<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown"><spring:message code="master.page.listar" /></a>
+				<ul class="dropdown-menu">
 					<li><a href="census/listAll.do"><spring:message code="master.page.census.all" /></a></li>
 					<security:authorize access="isAuthenticated()">
 						<li><a href="census/create.do"><spring:message code="master.page.census.createCensusFromFile" /></a></li>

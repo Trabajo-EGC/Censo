@@ -18,51 +18,57 @@
 	uri="http://www.springframework.org/security/tags"%>
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 <%@taglib prefix="acme" tagdir="/WEB-INF/tags"%>
-<div class="container">
-<div class="table-responsive">
 
+<div class="col-md-12">
+			<div class="row">
+				<div class="col-md-6 col-xs-6 text-right">
+					<h4><strong><spring:message code="census.token_propietario" />: </strong></h4>
+				</div>
+				<div class="col-md-6 col-xs-6 text-left">
+					<h4><jstl:out value="${census.username}" /></h4>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-6 col-xs-6 text-right">
+					<h4><strong><spring:message code="census.tipo" />: </strong></h4>
+				</div>
+				<div class="col-md-6 col-xs-6 text-left">
+				<jstl:if test="${census.tipoCenso == 'abierto' }">
+					<h4><spring:message code="census.abierto" /></h4>
+				</jstl:if>
 
-
-<spring:message code="census.token_propietario" />
-
-
-:
-
-
-<jstl:out value="${census.username}" />
-<br />
-
-
-
-<spring:message code="census.tipo" />
-:
-<jstl:if test="${census.tipoCenso == 'abierto' }">
-	<spring:message code="census.abierto" />
-	<br />
-</jstl:if>
-
-<jstl:if test="${census.tipoCenso == 'cerrado' }">
-	<spring:message code="census.cerrado" />
-	<br />
-</jstl:if>
-
-<spring:message code="census.votacio.name" />
-:
-<jstl:out value="${census.tituloVotacion}" />
-<br />
-
-<spring:message code="census.fecha.inicio" />
-:
-<fmt:formatDate value="${census.fechaInicioVotacion}"
-	pattern="dd/MM/yyyy" />
-<br />
-
-<spring:message code="census.fecha.fin" />
-:
-<fmt:formatDate value="${census.fechaFinVotacion}" pattern="dd/MM/yyyy" />
-<br />
+				<jstl:if test="${census.tipoCenso == 'cerrado' }">
+					<h4><spring:message code="census.cerrado" /></h4>
+				</jstl:if>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-6 col-xs-6 text-right">
+					<h4><strong><spring:message code="census.votacio.name" />: </strong></h4>
+				</div>
+				<div class="col-md-6 col-xs-6 text-left">
+					<h4><jstl:out value="${census.tituloVotacion}" /></h4>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-6 col-xs-6 text-right">
+					<h4><strong><spring:message code="census.fecha.inicio" />: </strong></h4>
+				</div>
+				<div class="col-md-6 col-xs-6 text-left">
+					<h4><fmt:formatDate value="${census.fechaInicioVotacion}"
+					pattern="dd/MM/yyyy" /></h4>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-6 col-xs-6 text-right">
+					<h4><strong><spring:message code="census.fecha.fin" />: </strong></h4>
+				</div>
+				<div class="col-md-6 col-xs-6 text-left">
+					<h4><fmt:formatDate value="${census.fechaFinVotacion}" pattern="dd/MM/yyyy" /></h4>
+				</div>
+			</div>
 </div>
-</div>
+
 
 
 <jstl:if test="${editable}">
