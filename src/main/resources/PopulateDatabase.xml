@@ -176,7 +176,7 @@
 		</property>
 
 		<property name="fechaInicioVotacion" value="11/20/2016 00:00" />
-		<property name="fechaFinVotacion" value="11/25/2016 00:00" />
+		<property name="fechaFinVotacion" value="11/25/2017 00:00" />
 	</bean>
 	
 	<bean id="census12" class="domain.Census">
@@ -204,7 +204,21 @@
 		</property>
 
 		<property name="fechaInicioVotacion" value="10/01/2016 00:00" />
-		<property name="fechaFinVotacion" value="10/28/2016 00:00" />
+		<property name="fechaFinVotacion" value="10/28/2017 00:00" />
+	</bean>
+	
+	<bean id="census14" class="domain.Census">
+		<property name="username" value="admin1" />
+		<property name="idVotacion" value="36" />
+		<property name="tituloVotacion" value="Censo abierto" />
+		<property name="tipoCenso" value="abierto" />
+		<property name="votoPorUsuario">
+			<map>
+			</map>
+		</property>
+
+		<property name="fechaInicioVotacion" value="07/01/2017 00:00" />
+		<property name="fechaFinVotacion" value="10/01/2017 00:00" />
 	</bean>
 
 <!-- User accounts -->

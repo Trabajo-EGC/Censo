@@ -22,19 +22,24 @@
 			<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown"><spring:message code="master.page.listar" /></a>
 				<ul class="dropdown-menu">
 					<li><a href="census/listAll.do"><spring:message code="master.page.census.all" /></a></li>
-					<security:authorize access="isAuthenticated()">
-						<li><a href="census/create.do"><spring:message code="master.page.census.createCensusFromFile" /></a></li>
-						<li><a href="misc/mant.do"><spring:message code="master.page.census.updateUser" /></a></li>
-						<!--<li><a href="census/updateUser.do"><spring:message code="master.page.census.updateUser" /></a></li>  -->
-						<li><a href="census/votesByUser.do?token=${token}"><spring:message code="master.page.census.activeVotes" /></a></li>
-						<li><a href="census/getAllCensusByCreador.do?token=${token}"><spring:message code="master.page.census.byCreator" /></a></li> 
-						<li><a href="census/getCensusesToRegister.do"><spring:message code="master.page.census.listRegister" /></a></li>
-						<li><a href="census/findRecentFinishedCensus.do"><spring:message code="master.page.census.findRecentFinishedCensus" /></a></li>
-					</security:authorize>
 					<li><a href="census/mostPopularCensus.do"><spring:message code="master.page.census.mostPopular" /></a></li>	
-					<li><a href="census/abstentionPercentage.do"><spring:message code="master.page.census.abstention" /></a></li>			
+					<li><a href="census/abstentionPercentage.do"><spring:message code="master.page.census.abstention" /></a></li>
+					<li><a href="census/listActive.do"><spring:message code="master.page.census.active" /></a></li>
 				</ul>
 			</li>
+			<security:authorize access="isAuthenticated()">
+			<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown"><spring:message code="master.page.userlistar" /></a>
+				<ul class="dropdown-menu">
+					<li><a href="census/create.do"><spring:message code="master.page.census.createCensusFromFile" /></a></li>
+					<li><a href="misc/mant.do"><spring:message code="master.page.census.updateUser" /></a></li>
+					<!--<li><a href="census/updateUser.do"><spring:message code="master.page.census.updateUser" /></a></li>  -->
+					<li><a href="census/votesByUser.do?token=${token}"><spring:message code="master.page.census.activeVotes" /></a></li>
+					<li><a href="census/getAllCensusByCreador.do?token=${token}"><spring:message code="master.page.census.byCreator" /></a></li> 
+					<li><a href="census/getCensusesToRegister.do"><spring:message code="master.page.census.listRegister" /></a></li>
+					<li><a href="census/findRecentFinishedCensus.do"><spring:message code="master.page.census.findRecentFinishedCensus" /></a></li>
+				</ul>
+			</li>
+			</security:authorize>	
 			<!-- Mientras no haya integración se evitará que salgan errores 404 -->
 			<li class='has-sub'><a href="misc/mant.do"><spring:message code="master.page.votaciones" /></a></li>
 			<li class='has-sub'><a href="misc/mant.do"><spring:message code="master.page.resultados" /></a></li>

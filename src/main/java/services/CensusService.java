@@ -1,3 +1,4 @@
+
 package services;
 
 import java.io.BufferedReader;
@@ -32,12 +33,13 @@ import domain.Census;
 public class CensusService {
 
 	// Atributo necesario para mandar email con la modificación del censo
-	private static String cuerpoEmail = "";
+	private static String		cuerpoEmail	= "";
 
 	// Managed repository -----------------------------------------------------
 
 	@Autowired
-	private CensusRepository censusRepository;
+	private CensusRepository	censusRepository;
+
 
 	// Constructors -----------------------------------------------------------
 
@@ -46,8 +48,8 @@ public class CensusService {
 	}
 
 	// Methods ----------------------------------------------------------------
-	
-	public Collection<Census> findAllCensus(){
+
+	public Collection<Census> findAllCensus() {
 		Collection<Census> result;
 		result = censusRepository.allCensus();
 		Assert.notNull(result);
@@ -72,30 +74,30 @@ public class CensusService {
 	 * @return census
 	 * @throws ParseException
 	 */
-	
+
 	public Census create(String archivo) throws FileNotFoundException, IOException, ParseException {
-		
+
 		FileReader f = new FileReader(archivo);
-	    BufferedReader b = new BufferedReader(f);
-	    
-	    String votacion;
+		BufferedReader b = new BufferedReader(f);
+
+		String votacion;
 		String username;
 		String fechaInicio;
 		String fechaFin;
 		String tituloVotacion;
 		String tipoVotacion;
-		
+
 		votacion = b.readLine();
 		username = b.readLine();
 		fechaInicio = b.readLine();
 		fechaFin = b.readLine();
 		tituloVotacion = b.readLine();
 		tipoVotacion = b.readLine();
-		
+
 		b.close();
-		
+
 		int idVotacion = Integer.parseInt(votacion);
-		
+
 		Assert.isTrue(!username.equals(""));
 		Assert.isTrue(tipoVotacion.equals("abierta") || tipoVotacion.equals("cerrada"));
 		Census result = new Census();
@@ -110,19 +112,16 @@ public class CensusService {
 
 		result.setIdVotacion(idVotacion);
 		result.setTituloVotacion(tituloVotacion);
-		if (tipoVotacion.equals("abierta")) {
+		if (tipoVotacion.equals("abierta"))
 			result.setTipoCenso("abierto");
-		} else {
+		else
 			result.setTipoCenso("cerrado");
-		}
 		result.setUsername(username);
 		HashMap<String, Boolean> vpo = new HashMap<String, Boolean>();
 		result.setVotoPorUsuario(vpo);
-		
+
 		return result;
 	}
-	
-	
 
 	/**
 	 * Metodo que devuelve los censos en los que se puede registrar un usuario.
@@ -138,12 +137,9 @@ public class CensusService {
 		Collection<Census> openedCensuses = new ArrayList<Census>();
 		openedCensuses = censusRepository.findAllOpenedCensuses();
 
-		for (Census c : openedCensuses) {
-			if (!c.getVotoPorUsuario().containsKey(username)
-					&& votacionActiva(c.getFechaInicioVotacion(), c.getFechaFinVotacion())) {
+		for (Census c : openedCensuses)
+			if (!c.getVotoPorUsuario().containsKey(username) && votacionActiva(c.getFechaInicioVotacion(), c.getFechaFinVotacion()))
 				result.add(c);
-			}
-		}
 		return result;
 	}
 
@@ -162,24 +158,24 @@ public class CensusService {
 	 * @param username
 	 *            = Nombre de usuario
 	 * @return boolean
-	 * @throws IOException 
+	 * @throws IOException
 	 */
 
-	public boolean updateUser(String archivo) throws IOException , FileNotFoundException{
-		
+	public boolean updateUser(String archivo) throws IOException, FileNotFoundException {
+
 		FileReader f = new FileReader(archivo);
-	    BufferedReader b = new BufferedReader(f);
-		
+		BufferedReader b = new BufferedReader(f);
+
 		String votacion;
 		String tipoVotacion;
 		String username;
-		
+
 		votacion = b.readLine();
 		tipoVotacion = b.readLine();
 		username = b.readLine();
-		
+
 		b.close();
-		
+
 		int idVotacion = Integer.parseInt(votacion);
 		System.out.println(username);
 		System.out.println(tipoVotacion);
@@ -223,9 +219,8 @@ public class CensusService {
 
 			res = "[{\"result\":\"yes\"}]";
 			delete(c.getId(), username);
-		} else {
+		} else
 			res = "[{\"result\":\"no\"}]";
-		}
 		return res;
 	}
 
@@ -247,16 +242,13 @@ public class CensusService {
 
 		Census census = findCensusByVote(idVotacion);
 
-		if (census.getVotoPorUsuario().containsKey(username) && !census.getVotoPorUsuario().get(username)) {
+		if (census.getVotoPorUsuario().containsKey(username) && !census.getVotoPorUsuario().get(username))
 			canVote = true;
 
-		}
-
-		if (canVote) {
+		if (canVote)
 			result = "{\"result\":\"yes\"}";
-		} else {
+		else
 			result = "{\"result\":\"no\"}";
-		}
 
 		return result;
 	}
@@ -275,16 +267,10 @@ public class CensusService {
 		Collection<Census> allCensuses = findAll();
 		Collection<Census> result = new ArrayList<Census>();
 
-		for (Census c : allCensuses) {
-
-			// Comprobamos si la votación está activa
-
-			if (votacionActiva(c.getFechaInicioVotacion(), c.getFechaFinVotacion())) {
-				if (c.getVotoPorUsuario().containsKey(username) && !c.getVotoPorUsuario().get(username)) {
+		for (Census c : allCensuses)
+			if (votacionActiva(c.getFechaInicioVotacion(), c.getFechaFinVotacion()))
+				if (c.getVotoPorUsuario().containsKey(username) && !c.getVotoPorUsuario().get(username))
 					result.add(c);
-				}
-			}
-		}
 		return result;
 	}
 
@@ -323,7 +309,7 @@ public class CensusService {
 	/**
 	 * 
 	 * Añade un usuario con un username determidado a un censo CERRADO
-	 *
+	 * 
 	 * @param censusId
 	 *            = Identificador del censo al que añadir el usuario
 	 * @param username
@@ -353,12 +339,12 @@ public class CensusService {
 		Date currentMoment = new Date();
 		Map<String, String> usernamesAndEmails = RESTClient.getMapUSernameAndEmailByJsonAutentication();
 		dirEmail = usernamesAndEmails.get(usernameAdd);
-		cuerpoEmail = currentMoment.toString() + "-> Se ha incorporado al censo de " + census.getTituloVotacion();
+		CensusService.cuerpoEmail = currentMoment.toString() + "-> Se ha incorporado al censo de " + census.getTituloVotacion();
 		try {
 
 			// Se procede al envío del correo con el resultado de la inclusión
 			// en el censo
-			Gmail.send(cuerpoEmail, dirEmail);
+			Gmail.send(CensusService.cuerpoEmail, dirEmail);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -367,7 +353,7 @@ public class CensusService {
 	/**
 	 * 
 	 * Añade un usuario a un censo ABIERTO (registrarse en un censo abierto)
-	 *
+	 * 
 	 * @param censusId
 	 *            Identificador del censo al que añadir el usuario
 	 * @param username_add
@@ -394,12 +380,12 @@ public class CensusService {
 
 		Map<String, String> usernamesAndEmails = RESTClient.getMapUSernameAndEmailByJsonAutentication();
 		dirEmail = usernamesAndEmails.get(usernameAdd);
-		cuerpoEmail = currentMoment.toString() + "-> Se ha incorporado al censo de " + census.getTituloVotacion();
+		CensusService.cuerpoEmail = currentMoment.toString() + "-> Se ha incorporado al censo de " + census.getTituloVotacion();
 		try {
 
 			// Se procede al envio del correo con el resultado de la inclusión
 			// en el censo
-			Gmail.send(cuerpoEmail, dirEmail);
+			Gmail.send(CensusService.cuerpoEmail, dirEmail);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -409,7 +395,7 @@ public class CensusService {
 	 * 
 	 * Elimina un usuario con un username determidado de un censo CERRADO,
 	 * cumpliendo la condicion de que el usuario no tenga voto en ese censo
-	 *
+	 * 
 	 * @param censusId
 	 *            = Identificador del censo
 	 * @param username
@@ -439,12 +425,12 @@ public class CensusService {
 
 		Map<String, String> usernamesAndEmails = RESTClient.getMapUSernameAndEmailByJsonAutentication();
 		dirEmail = usernamesAndEmails.get(username_remove);
-		cuerpoEmail = currentMoment.toString() + "-> Se ha eliminado del censo de " + census.getTituloVotacion();
+		CensusService.cuerpoEmail = currentMoment.toString() + "-> Se ha eliminado del censo de " + census.getTituloVotacion();
 
 		// Se procede al envio del correo con el resultado de la exclusión del
 		// usuario del censo
 		try {
-			Gmail.send(cuerpoEmail, dirEmail);
+			Gmail.send(CensusService.cuerpoEmail, dirEmail);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -509,12 +495,10 @@ public class CensusService {
 		String response = "";
 		Census c = findCensusByVote(idVotacion);
 
-		if (c.getVotoPorUsuario().get(username)) {
-			response = response + "{\"idVotacion\":" + idVotacion + ",\"username\":\"" + username + "\",\"result\":"
-					+ c.getVotoPorUsuario().get(username) + "}";
-		} else {
+		if (c.getVotoPorUsuario().get(username))
+			response = response + "{\"idVotacion\":" + idVotacion + ",\"username\":\"" + username + "\",\"result\":" + c.getVotoPorUsuario().get(username) + "}";
+		else
 			response = response + "{\"result\":" + "0}";
-		}
 		return response;
 	}
 
@@ -545,7 +529,7 @@ public class CensusService {
 	}
 
 	/**
-	 *
+	 * 
 	 * Método creado para saber si existe una votacion activa en el rango de
 	 * fechas. Una votacion sera activa si su fecha de fin es posterior a la
 	 * fecha actual.
@@ -562,9 +546,8 @@ public class CensusService {
 		Date fechaActual = new Date();
 		Long fechaActualLong = fechaActual.getTime();
 		Long fechaFinLong = fechaFin.getTime();
-		if (fechaFinLong > fechaActualLong) {
+		if (fechaFinLong > fechaActualLong)
 			res = true;
-		}
 		return res;
 	}
 
@@ -589,121 +572,121 @@ public class CensusService {
 		Map<String, String> map = RESTClient.getMapUSernameAndEmailByJsonAutentication();
 		Collection<String> usernames = map.keySet();
 
-		for (String user : usernames) {
-			if (user.contains(username)) {
-
-				// Añadimos al resultado los votantes que pasan el filtro
-
+		for (String user : usernames)
+			if (user.contains(username))
 				result.add(user);
-			}
-		}
 		return result;
 	}
-	
+
 	// NUEVA FUNCIONALIDAD 2016/2017
 
-		/**
-		* Método para obtener los censo que han finalizado recientemente.				 * 
-		* @param username
-	    *            = Username del usuario que buscamos
-		*/
-		public Collection<Census> findRecentFinishedCensus(String user){
-			Collection<Census> aux;
-			Collection<Census> finished=new HashSet<Census>();
-			aux=censusRepository.findAllCensusFinishedRecently();
-			for(Census c:aux){
-				if(c.getVotoPorUsuario().containsKey(user)){
-					finished.add(c);
-				}
+	/**
+	 * Método para obtener los censo que han finalizado recientemente. *
+	 * 
+	 * @param username
+	 *            = Username del usuario que buscamos
+	 */
+	public Collection<Census> findRecentFinishedCensus(String user) {
+		Collection<Census> aux;
+		Collection<Census> finished = new HashSet<Census>();
+		aux = censusRepository.findAllCensusFinishedRecently();
+		for (Census c : aux)
+			if (c.getVotoPorUsuario().containsKey(user))
+				finished.add(c);
+		return finished;
+	}
+
+	/**
+	 * Método para obtener los censos que posean un titulo. *
+	 * 
+	 * @param key
+	 *            = Titulo o parte del titulo del censo
+	 */
+	public Collection<Census> findByKey(String key) {
+		return censusRepository.findByRecipeKeyWord(key);
+	}
+	/**
+	 * Método para obtener los 10 censos con mayor participación
+	 * 
+	 */
+	public Map<Census, Integer> mostPopularCensus() {
+		Collection<Census> censos = censusRepository.findAll();
+		Map<Census, Integer> res = new HashMap<Census, Integer>();
+		Map<Census, Integer> result = new HashMap<Census, Integer>();
+		for (Census c : censos) {
+			Integer cont = 0;
+			for (String s : c.getVotoPorUsuario().keySet())
+				if (c.getVotoPorUsuario().get(s) == true)
+					cont = cont + 1;
+			res.put(c, cont);
+		}
+		res = CensusService.sortByValue(res);
+		int cont = 0;
+		for (Census c : res.keySet()) {
+			if (cont < 10)
+				result.put(c, res.get(c));
+			else
+				break;
+			cont++;
+		}
+
+		return result;
+	}
+
+	/**
+	 * Método para comparar la participación de los censos para poder ordenarlos
+	 * 
+	 * @param censos
+	 * @return censos ordenados
+	 */
+
+	public static <K, V extends Comparable<? super V>> Map<K, V> sortByValue(Map<K, V> map) {
+		List<Map.Entry<K, V>> list = new LinkedList<>(map.entrySet());
+		Collections.sort(list, new Comparator<Map.Entry<K, V>>() {
+
+			@Override
+			public int compare(Map.Entry<K, V> o1, Map.Entry<K, V> o2) {
+				return (o2.getValue()).compareTo(o1.getValue());
 			}
-			return finished;
+		});
+
+		Map<K, V> result = new LinkedHashMap<>();
+		for (Map.Entry<K, V> entry : list)
+			result.put(entry.getKey(), entry.getValue());
+		return result;
+	}
+
+	/**
+	 * Muestra el porcentaje de abstenciones para los censos
+	 * 
+	 * @return Map<Census, Double>
+	 */
+	public Map<Census, Double> abstentionPercentage() {
+		Collection<Census> censos = censusRepository.findAll();
+		Map<Census, Double> res = new HashMap<Census, Double>();
+		for (Census c : censos) {
+			Integer cont = 0;
+			for (String s : c.getVotoPorUsuario().keySet())
+				if (c.getVotoPorUsuario().get(s) == false)
+					cont = cont + 1;
+			res.put(c, (double) cont / c.getVotoPorUsuario().keySet().size() * 100);
 		}
+		return res;
+	}
 
-		/**
-		* Método para obtener los censos que posean un titulo.				 * 
-		* @param key
-	    *            = Titulo o parte del titulo del censo
-		*/
-		public Collection<Census> findByKey(String key){
-			return censusRepository.findByRecipeKeyWord(key);
-		}
-		/**
-		 * Método para obtener los 10 censos con mayor participación
-		 * 
-		 */
-		 public Map<Census, Integer> mostPopularCensus(){
-			 Collection<Census>censos=censusRepository.findAll();
-			 Map<Census,Integer>res= new HashMap<Census,Integer>();
-			 Map<Census,Integer>result= new HashMap<Census,Integer>();
-			 for(Census c:censos){
-				 Integer cont=0;
-				 for(String s:c.getVotoPorUsuario().keySet()){
-					 if(c.getVotoPorUsuario().get(s)==true){
-						cont=cont+1;
-					 }
-				 }
-				 res.put(c, cont);
-			 }
-			 res = sortByValue(res);
-			 int cont = 0;
-			 for(Census c : res.keySet()){
-				 if(cont<10){
-					 result.put((Census)c, res.get(c));
-				 }else{
-					 break;
-				 }
-				 cont++;
-			 }
+	// NUEVA FUNCIONALIDAD 2016/2017 VERANO
 
-			 return result;
-		 }
-		 
-		 /**
-		  * Método para comparar la participación de los censos para poder ordenarlos
-		  * @param censos
-		  * @return censos ordenados
-		  */
-		 
-		 public static <K, V extends Comparable<? super V>> Map<K, V> 
-		    sortByValue( Map<K, V> map )
-		{
-		    List<Map.Entry<K, V>> list =
-		        new LinkedList<>( map.entrySet() );
-		    Collections.sort( list, new Comparator<Map.Entry<K, V>>()
-		    {
-		        @Override
-		        public int compare( Map.Entry<K, V> o1, Map.Entry<K, V> o2 )
-		        {
-		            return ( o2.getValue() ).compareTo( o1.getValue() );
-		        }
-		    } );
+	/**
+	 * Muestra los censos activos
+	 * 
+	 * @return Collection<Census>
+	 */
 
-		    Map<K, V> result = new LinkedHashMap<>();
-		    for (Map.Entry<K, V> entry : list)
-		    {
-		        result.put( entry.getKey(), entry.getValue() );
-		    }
-		    return result;
-		}
-		 
-		 /**
-		  * Muestra el porcentaje de abstenciones para los censos
-		  * @return Map<Census, Double>
-		  */
-		 public Map<Census, Double> abstentionPercentage(){
-			 Collection<Census>censos=censusRepository.findAll();
-			 Map<Census,Double>res= new HashMap<Census,Double>();
-			 for(Census c:censos){
-			 Integer cont=0;
-				 for(String s:c.getVotoPorUsuario().keySet()){
-					 if(c.getVotoPorUsuario().get(s)==false){
-						 cont=cont+1;
-					 }
-				 }
-				 res.put(c, (double) cont/c.getVotoPorUsuario().keySet().size()*100);
-			 }
-			 return res;
-		 }
-
+	public Collection<Census> activeCensus() {
+		Collection<Census> result;
+		result = censusRepository.activeCensus();
+		Assert.notNull(result);
+		return result;
+	}
 
 }

@@ -62,6 +62,11 @@
 		<put-attribute name="body" value="/views/census/listAll.jsp" />
 	</definition>
 	
+	<definition name="census/listActive" extends="master.page">	
+		<put-attribute name="title" value="Listar censos activos" />
+		<put-attribute name="body" value="/views/census/listAll.jsp" />
+	</definition>
+	
 	<definition name="census/findRecentFinishedCensus" extends="master.page">	
 		<put-attribute name="title" value="Listar censos finalizados recientemente" />
 		<put-attribute name="body" value="/views/census/listAll.jsp" />
