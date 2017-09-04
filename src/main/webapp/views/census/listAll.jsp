@@ -18,6 +18,26 @@ document.cookie = "user=${user}";
 <display:table pagesize="5" class="census" name="census"
 	requestURI="${requestURI}" id="census">
 	
+	<jstl:if test="${!misVotaciones}">
+		<display:column>
+			<a href="census/details.do?censusId=${census.id}"> <img
+				alt="<spring:message	code="census.details" />"
+				src="images/details.png" style="height: 25px; width: 25px;">
+
+			</a>
+		</display:column>
+	</jstl:if>
+
+	<jstl:if test="${misVotaciones}">
+		<display:column>
+			<a href="http://cabina-egc.jeparca.com/cabinaus/${census.idVotacion}"> <img
+				alt="<spring:message	code="census.details" />"
+				src="images/votar.gif" style="height: 25px; width: 25px;">
+
+			</a>
+		</display:column>
+	</jstl:if>
+	
 	<!-- Atributos de la tabla -->
 	<div class="col-md-3">
 	<spring:message code="census.username" var="username" />

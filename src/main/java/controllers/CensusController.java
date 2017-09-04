@@ -68,7 +68,7 @@ public class CensusController extends AbstractController {
 	public @ResponseBody
 	ModelAndView create() throws ParseException, FileNotFoundException, IOException {
 		ModelAndView result = null;
-		String fichero = "C:\\Censo\\votacion.txt";
+		String fichero = "Z:\\Temp\\VM\\ExamenWS\\Censo\\votacion.txt";
 		Census c = censusService.create(fichero);
 		try {
 			censusService.save(c);
@@ -179,7 +179,7 @@ public class CensusController extends AbstractController {
 	// Registrarse en un censo abierto y activo -------------------------------
 
 	@RequestMapping(value = "/registerUser", method = RequestMethod.GET)
-	public ModelAndView addUser(@RequestParam int censusId, @CookieValue("user") String username) {
+	public ModelAndView registerUser(@RequestParam int censusId, @CookieValue("user") String username) {
 		ModelAndView result = null;
 		try {
 

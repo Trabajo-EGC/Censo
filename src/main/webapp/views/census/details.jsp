@@ -19,57 +19,20 @@
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 <%@taglib prefix="acme" tagdir="/WEB-INF/tags"%>
 
-<div class="col-md-12">
-			<div class="row">
-				<div class="col-md-6 col-xs-6 text-right">
-					<h4><strong><spring:message code="census.token_propietario" />: </strong></h4>
-				</div>
-				<div class="col-md-6 col-xs-6 text-left">
-					<h4><jstl:out value="${census.username}" /></h4>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-6 col-xs-6 text-right">
-					<h4><strong><spring:message code="census.tipo" />: </strong></h4>
-				</div>
-				<div class="col-md-6 col-xs-6 text-left">
-				<jstl:if test="${census.tipoCenso == 'abierto' }">
-					<h4><spring:message code="census.abierto" /></h4>
-				</jstl:if>
+<h4><strong><spring:message code="census.token_propietario" /></strong>: <jstl:out value="${census.username}" /></h4>
 
-				<jstl:if test="${census.tipoCenso == 'cerrado' }">
-					<h4><spring:message code="census.cerrado" /></h4>
-				</jstl:if>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-6 col-xs-6 text-right">
-					<h4><strong><spring:message code="census.votacio.name" />: </strong></h4>
-				</div>
-				<div class="col-md-6 col-xs-6 text-left">
-					<h4><jstl:out value="${census.tituloVotacion}" /></h4>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-6 col-xs-6 text-right">
-					<h4><strong><spring:message code="census.fecha.inicio" />: </strong></h4>
-				</div>
-				<div class="col-md-6 col-xs-6 text-left">
-					<h4><fmt:formatDate value="${census.fechaInicioVotacion}"
-					pattern="dd/MM/yyyy" /></h4>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-6 col-xs-6 text-right">
-					<h4><strong><spring:message code="census.fecha.fin" />: </strong></h4>
-				</div>
-				<div class="col-md-6 col-xs-6 text-left">
-					<h4><fmt:formatDate value="${census.fechaFinVotacion}" pattern="dd/MM/yyyy" /></h4>
-				</div>
-			</div>
-</div>
+<h4><strong><spring:message code="census.tipo" /></strong>: <jstl:if test="${census.tipoCenso == 'abierto' }">
+					<spring:message code="census.abierto" />
+				</jstl:if><jstl:if test="${census.tipoCenso == 'cerrado' }">
+					<spring:message code="census.cerrado" />
+				</jstl:if></h4>
+				
+<h4><strong><spring:message code="census.votacio.name" /></strong>: <jstl:out value="${census.tituloVotacion}" /></h4>
 
+<h4><strong><spring:message code="census.fecha.inicio" /></strong>: <fmt:formatDate value="${census.fechaInicioVotacion}" pattern="dd/MM/yyyy" /></h4>
 
+<h4><strong><spring:message code="census.fecha.fin" /></strong>: <fmt:formatDate value="${census.fechaFinVotacion}" pattern="dd/MM/yyyy" /></h4>
+				
 
 <jstl:if test="${editable}">
 	<acme:cancel url="census/edit.do?censusId=${census.id }"
