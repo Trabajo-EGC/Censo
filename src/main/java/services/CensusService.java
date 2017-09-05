@@ -5,7 +5,9 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.text.DateFormat;
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -24,6 +26,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 
 import repositories.CensusRepository;
+import security.LoginService;
 import utilities.Gmail;
 import utilities.RESTClient;
 import domain.Census;
@@ -88,9 +91,10 @@ public class CensusService {
 		String tipoVotacion;
 
 		votacion = b.readLine();
-		username = b.readLine();
-		fechaInicio = b.readLine();
-		fechaFin = b.readLine();
+		username = LoginService.getPrincipal().getUsername();
+		DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+		Date aux = dateFormat.parse(b.readLine());
+		Date aux1 = dateFormat.parse(b.readLine());
 		tituloVotacion = b.readLine();
 		tipoVotacion = b.readLine();
 
@@ -101,14 +105,11 @@ public class CensusService {
 		Assert.isTrue(!username.equals(""));
 		Assert.isTrue(tipoVotacion.equals("abierta") || tipoVotacion.equals("cerrada"));
 		Census result = new Census();
-		long startDate = Long.parseLong(fechaInicio);
-		long finishDate = Long.parseLong(fechaFin);
-		Date fechaComienzo = new Date(startDate);
-		Date fechaFinal = new Date(finishDate);
-		Assert.isTrue(fechaComienzo.before(fechaFinal));
 
-		result.setFechaFinVotacion(fechaFinal);
-		result.setFechaInicioVotacion(fechaComienzo);
+		Assert.isTrue(aux.before(aux1));
+
+		result.setFechaFinVotacion(aux1);
+		result.setFechaInicioVotacion(aux);
 
 		result.setIdVotacion(idVotacion);
 		result.setTituloVotacion(tituloVotacion);

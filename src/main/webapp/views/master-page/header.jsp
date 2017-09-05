@@ -30,12 +30,16 @@
 			<security:authorize access="isAuthenticated()">
 			<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown"><spring:message code="master.page.userlistar" /></a>
 				<ul class="dropdown-menu">
+					<security:authorize access="hasRole('ADMIN')">
 					<li><a href="census/create.do"><spring:message code="master.page.census.createCensusFromFile" /></a></li>
+					<li><a href="census/getAllCensusByCreador.do?token=${token}"><spring:message code="master.page.census.byCreator" /></a></li>
+					</security:authorize>
 					<li><a href="misc/mant.do"><spring:message code="master.page.census.updateUser" /></a></li>
 					<!--<li><a href="census/updateUser.do"><spring:message code="master.page.census.updateUser" /></a></li>  -->
 					<li><a href="census/votesByUser.do?token=${token}"><spring:message code="master.page.census.activeVotes" /></a></li>
-					<li><a href="census/getAllCensusByCreador.do?token=${token}"><spring:message code="master.page.census.byCreator" /></a></li> 
+					<security:authorize access="hasRole('CUSTOMER')">
 					<li><a href="census/getCensusesToRegister.do"><spring:message code="master.page.census.listRegister" /></a></li>
+					</security:authorize>
 					<li><a href="census/findRecentFinishedCensus.do"><spring:message code="master.page.census.findRecentFinishedCensus" /></a></li>
 				</ul>
 			</li>

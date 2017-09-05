@@ -258,6 +258,16 @@
 			</list>
 		</property>
 	</bean>
+	
+	<bean id="user1" class="domain.User">
+		<property name="uId" value="1" />
+		<property name="username" value="user1" />
+		<property name="email" value="Nicolorenzcontact@gmail.com" />
+		<property name="genre" value="Hombre" />
+		<property name="autonomousCommunity" value="Andalucia" />
+		<property name="age" value="24" />
+		<property name="userAccount" ref="userAccount2"/>
+	</bean>
 
 
 </beans>

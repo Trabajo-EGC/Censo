@@ -1,13 +1,26 @@
+
 package domain;
 
-public class User {
-	
-	private int uId;
-	private String username;
-	private String email;
-	private String genre;
-	private String autonomousCommunity;
-	private int age;
+import javax.persistence.Access;
+import javax.persistence.AccessType;
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.OneToOne;
+import javax.validation.Valid;
+
+import security.UserAccount;
+
+@Entity
+@Access(AccessType.PROPERTY)
+public class User extends DomainEntity {
+
+	private int		uId;
+	private String	username;
+	private String	email;
+	private String	genre;
+	private String	autonomousCommunity;
+	private int		age;
+
 
 	public int getUId() {
 		return uId;
@@ -55,5 +68,18 @@ public class User {
 
 	public void setAge(int age) {
 		this.age = age;
+	}
+
+
+	private UserAccount	userAccount;
+
+
+	@Valid
+	@OneToOne(cascade = CascadeType.ALL, optional = false)
+	public UserAccount getUserAccount() {
+		return userAccount;
+	}
+	public void setUserAccount(UserAccount userAccount) {
+		this.userAccount = userAccount;
 	}
 }

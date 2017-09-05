@@ -1,7 +1,7 @@
+
 package utilities;
 
 import java.io.IOException;
-
 import java.util.HashMap;
 import java.util.Map;
 
@@ -33,7 +33,7 @@ public class RESTClient {
 			String[] lista2 = result.split(",");
 			for (String campo : lista2) {
 				String[] auxList = campo.split(":");
-				if (campo.contains("Username")) {
+				if (campo.contains("UserName")) {
 					username = auxList[1];
 					username = username.replaceAll("\"", "");
 					mapUsernamesEmails.put(username, null);
@@ -53,7 +53,7 @@ public class RESTClient {
 	}
 
 	public static void main(String[] args) throws IOException {
-		Map<String, String> usernamesAndEmails = getMapUSernameAndEmailByJsonAutentication();
+		Map<String, String> usernamesAndEmails = RESTClient.getMapUSernameAndEmailByJsonAutentication();
 		System.out.println(usernamesAndEmails);
 	}
 
@@ -65,8 +65,7 @@ public class RESTClient {
 
 	public static User getCertainUserByJsonAuthentication(String username) {
 		RestTemplate restTemplate = new RestTemplate();
-		String result = restTemplate.getForObject("http://auth-egc.azurewebsites.net/api/getUser?username=" + username,
-				String.class);
+		String result = restTemplate.getForObject("http://auth-egc.azurewebsites.net/api/getUser?username=" + username, String.class);
 		System.out.println(result);
 		String[] lista = result.split(",");
 		User user = new User();

@@ -35,6 +35,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import security.LoginService;
 import services.CensusService;
 import utilities.RESTClient;
 import domain.Census;
@@ -68,8 +69,8 @@ public class CensusController extends AbstractController {
 	public @ResponseBody
 	ModelAndView create() throws ParseException, FileNotFoundException, IOException {
 		ModelAndView result = null;
-		String fichero = "Z:\\Temp\\VM\\ExamenWS\\Censo\\votacion.txt";
-		Census c = censusService.create(fichero);
+
+		Census c = censusService.create("Z:\\ExamenWS\\Censo\\votacion.txt");
 		try {
 			censusService.save(c);
 			result = new ModelAndView("welcome/index");
@@ -179,10 +180,10 @@ public class CensusController extends AbstractController {
 	// Registrarse en un censo abierto y activo -------------------------------
 
 	@RequestMapping(value = "/registerUser", method = RequestMethod.GET)
-	public ModelAndView registerUser(@RequestParam int censusId, @CookieValue("user") String username) {
+	public ModelAndView registerUser(@RequestParam int censusId) {
 		ModelAndView result = null;
 		try {
-
+			String username = LoginService.getPrincipal().getUsername();
 			censusService.addUserToOpenedCensus(censusId, username);
 			result = new ModelAndView("redirect:/census/getCensusesToRegister.do");
 
@@ -384,7 +385,7 @@ public class CensusController extends AbstractController {
 			bufferedWriter.write("Nothing to display because there isn't any voters");
 
 		bufferedWriter.close();
-		result = new ModelAndView("redirect:getAllCensusByCreador.do");
+		result = new ModelAndView("redirect:/welcome/index.do");
 		return result;
 	}
 
