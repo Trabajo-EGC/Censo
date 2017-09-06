@@ -70,7 +70,7 @@ public class CensusController extends AbstractController {
 	ModelAndView create() throws ParseException, FileNotFoundException, IOException {
 		ModelAndView result = null;
 
-		Census c = censusService.create("Z:\\ExamenWS\\Censo\\votacion.txt");
+		Census c = censusService.create("C:\\Censo\\votacion.txt");
 		try {
 			censusService.save(c);
 			result = new ModelAndView("welcome/index");
