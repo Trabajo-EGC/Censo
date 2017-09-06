@@ -298,7 +298,7 @@ public class CensusController extends AbstractController {
 		// dependiendo de si estamos trabajando sobre Windows o sobre Linux
 
 		if (typeOS.contains("Windows"))
-			file = new File(userHomeDir + "/Desktop/filename" + censusId + ".txt");
+			file = new File("C:/Censo/filename" + censusId + ".txt");
 		else if (typeOS.contains("Linux"))
 			file = new File(userHomeDir + "/Escritorio/filename" + censusId + ".txt");
 		else if (typeOS.contains("Mac"))
