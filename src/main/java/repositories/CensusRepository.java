@@ -40,7 +40,7 @@ public interface CensusRepository extends JpaRepository<Census, Integer> {
 	Collection<Census> findByRecipeKeyWord(String key);
 
 	//Devuelve los censos que estén activos
-	@Query("select c from Census c where c.fechaInicioVotacion < current_date and c.fechaFinVotacion > current_date and c.tipoCenso = 'abierto'")
+	@Query("select c from Census c where c.fechaInicioVotacion < current_date and c.fechaFinVotacion > current_date and c.tipoCenso = 'cerrado'")
 	Collection<Census> activeCensus();
 
 }
